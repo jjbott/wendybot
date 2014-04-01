@@ -1,6 +1,7 @@
 var jerk = require( 'jerk' ), 
 	sys=require('sys'),
-	last_said = new Array();
+	last_said = new Array(),
+	readline = require('readline');
 var jenkinsapi = require('jenkins-api');
 var color = require('irc-colors');
 
@@ -21,6 +22,7 @@ var TIMER = 30000;
 // Port to listen for updates
 var PORT = 1337;
 
+var rl = readline.createInterface(process.stdin, process.stdout, null);
 
 var jenkins = jenkinsapi.init(JENKINS_URL);
 
@@ -85,6 +87,10 @@ var say = function(text, message, delay) {
 		}
 	}, delay);
 };
+
+rl.on('line', function (cmd) {
+  say(cmd);
+});
 
 var http = require('http');
 http.createServer(function (req, res) {
