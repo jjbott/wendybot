@@ -61,12 +61,15 @@ var daJerk = jerk( function( j ) {
     });
 	
 	j.watch_for( /^([ \w]* is) ([ \w]+)[\.!]?$/, function( message ) {
-		var lower = message.match_data[1].toLowerCase();
-		if ( lower.indexOf('your face') < 0 && 
-			lower.indexOf('how is') < 0 && 
-			lower.indexOf('why is') < 0 &&
-			lower.indexOf('where is') < 0 ) {
-			say('Your face is ' + message.match_data[2], message, 2000);
+		if ( Math.random() > .6 ) {
+			var lower = message.match_data[1].toLowerCase();
+			if ( lower.indexOf('your face') < 0 && 
+				lower.indexOf('how is') < 0 && 
+				lower.indexOf('why is') < 0 &&
+				lower.indexOf('wtf is') < 0 &&
+				lower.indexOf('where is') < 0 ) {
+				say('Your face is ' + message.match_data[2], message, 2000);
+			}
 		}
 	});
 	
